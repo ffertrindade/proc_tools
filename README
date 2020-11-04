@@ -1,1 +1,20 @@
 Scripts for initial data processing
+
+renameFiles.sh: Rename files in diferent situations
+Usage: renameFiles.sh bam/fastq pattern/table_file dataset_name
+
+createMakefile.sh: create a makefile from a sample-library table to run paleomix
+Usage: createMakefile.sh dataset_name table_file fastq_path sample_makefile
+
+runPaleomix.sh: Run Paleomix for several samples at once and samtools to split them
+Usage: runPaleomix.sh run_dir makefile dataset_name ref_name threads
+
+getPaleomixStats.sh
+
+plotPaleomixStats.R
+
+getInsertSize.sh
+
+runSamtoolsDepth.sh
+
+plotSamtoolsDepth.R

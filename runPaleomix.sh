@@ -22,4 +22,14 @@ p=$5
 bam_pipeline run --jre-option "-Xmx60g" --max-threads $p --bwa-max-threads $p --adapterremoval-max-threads $p --destination $dir $mf
 
 ## Spliting bam file per sample RG
-samtools saplit -@$p -f"%*.%!" $dir/$ds/$ds.$ref.realigned.bam
+cd $dir/$ds
+samtools saplit -@$p -f"%*.%!" $ds.$ref.realigned.bam
+renameFiles.sh bam $ds.$ref.realigned
+
+## Creating index for all bam files
+bamfiles=($(ls -l $ds.$ref.realigned.*.bam | awk '{print $9}'))
+
+for (( i=0; i<"${#bamfiles[@]}"; i++ )); do
+        echo -e "Indexing file ${bamfiles[i]} (...)"
+        samtools index ${bamfiles[i]}
+done

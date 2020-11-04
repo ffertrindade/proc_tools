@@ -1,5 +1,5 @@
 #!/bin/bash
-# rename files in diferent situations
+# Rename files in diferent situations
 
 ## arguments
 if [[ $# > 3 ]] || [[ $# == 0 ]]; then
@@ -20,10 +20,11 @@ if [[ $option = "bam" ]]; then
 	if [ -z "$2" ]; then
 		echo "Missing options:"
 		echo "<pattern> pattern used to recognize the list of bam files"
+		exit 1
 	fi
 
 	pat=$2
-	files=($(ls -l | grep -E "$pat" | awk '{print $9}'))
+	files=($(ls -l | grep -E $pat | grep -v bam | awk '{print $9}'))
 	for (( i=0; i<"${#files[@]}"; i++ )); do
         	echo -e "Renaming file $PWD/${files[i]} (...)"
 		mv ${files[i]} ${files[i]}.bam
