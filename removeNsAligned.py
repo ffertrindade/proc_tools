@@ -16,7 +16,7 @@ if len(my_args) < 3:
     exit()
 else:
     input = list(SeqIO.parse(my_args[1], "fasta"))
-    output = open(re.sub('.fasta', '.noN.fasta', my_args[1]), "w")
+    output = open(re.sub('.fasta', '.' + my_args[2] + 'N.fasta', my_args[1]), "w")
     perc = int(my_args[2])
 
 ## Puting the sequences in a list of lists and creating a final empty list to receive the filtered data
